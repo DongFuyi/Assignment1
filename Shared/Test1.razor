@@ -1,0 +1,29 @@
+﻿@typeparam IData
+
+<table>
+    <thead>
+        @HeaderTemplate
+    </thead>
+    <tbody>
+        @foreach (var item in Items)
+        {
+            <tr>@RowTemplate(item)</tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    //外部定义行标题
+    //外部定义行内容
+    //外部引进数据源
+
+    [Parameter]
+    public RenderFragment HeaderTemplate { get; set; }       //RenderFragment渲染片段
+
+    [Parameter]
+    public RenderFragment<IData> RowTemplate { get; set; }
+
+    [Parameter]
+    public IReadOnlyList<IData> Items { get; set; }          //动态生成行
+
+}

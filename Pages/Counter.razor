@@ -1,0 +1,50 @@
+﻿@page "/counter"
+@using BlazorApp.Data
+
+<h5>Two presentation forms</h5>
+<Test1 Items="people">
+    <HeaderTemplate>
+        <th>Id</th>
+        <th>Name</th>
+    </HeaderTemplate>
+
+    <RowTemplate>
+        <td>@context.Id</td>
+        <td>@context.Name</td>
+    </RowTemplate>
+
+</Test1>
+
+<Test1 Items="students">
+    <HeaderTemplate>
+        <th>Id</th>
+        <th>Age</th>
+    </HeaderTemplate>
+
+    <RowTemplate>
+        <td>@context.Id</td>
+        <td>@context.Age</td>
+    </RowTemplate>
+</Test1>
+
+
+@code {
+ 
+    //添加表格
+    public List<Person> people;
+    public List<Student> students;
+
+    protected override Task OnInitializedAsync()
+    {
+        people = new List<Person>();
+        students = new List<Student>();
+        for (int i = 0; i < 3; i++)
+        {
+            people.Add(new Person() { Id = i.ToString(), Name = "Test" + i });
+            students.Add(new Student() { Id = i.ToString(), Age = i });
+        }
+
+        return base.OnInitializedAsync();
+    }
+
+}

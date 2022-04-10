@@ -1,0 +1,57 @@
+﻿@page "/"
+@using BlazorApp.Data
+
+@inject NavigationManager nv
+
+<h1>@Title</h1>
+
+<Test Title="Here are two examples of text boxes." />
+
+<h5>Enter text to change the title</h5>
+<input @onchange="onchange" />
+
+<h5>Data binding Demo</h5>
+<h6>The main components</h6>
+<input @bind="@Name" />
+
+<button @onclick="Update">Update</button>
+
+<h6>Sub-components</h6>
+<Test2 @bind-Title="Name"></Test2>
+
+<h5>The error routing</h5>
+<button @onclick="NavTo">Error</button>
+
+<h5>The correct routing</h5>
+<button @onclick="NavTo1">Correct</button>
+
+
+@code
+{
+    //事件函数
+    public string Title { get; set; }        //输入框绑定事件
+    public void onchange(ChangeEventArgs e)
+    {
+        //await Task.Delay(100);              //添加async异步代码
+        Title = e.Value.ToString();
+    }
+
+    //数据绑定
+    public string Name { get; set; } = "Anna";
+
+    public void Update()
+    {
+        Name = "Amy";
+    }
+
+    //路由测试
+    public void NavTo()
+    {
+        nv.NavigateTo("abc");           //路由错误测试
+    }
+
+    public void NavTo1()
+    {
+        nv.NavigateTo("correct");           //路由正确测试
+    }
+}

@@ -1,0 +1,11 @@
+﻿<input @bind="Title" />
+
+@code
+{
+    //绑定页面数据
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public EventCallback<string> TitleChanged { get; set; }     //回调函数
+}

@@ -1,0 +1,25 @@
+﻿<h3>@Title</h3>
+
+<input title="@Title" value="@Value">
+<input @attributes="@inputAttributes" />
+
+
+@code {
+
+    [Parameter]                         //不适用inpuAttribute的同类引用演示
+    public string Title { get; set; }
+
+    [Parameter]                         //组件参数
+    public string Value { get; set; } = "99";
+
+    //特有的多参数组件的对比
+    [Parameter]                         //单独引用inputAttribute的组件多参数
+    public Dictionary<string, object> inputAttributes { get; set; } = new Dictionary<string, object>()
+{
+        {"title","inout1" },
+        {"value","10" }
+    };
+
+
+
+}
